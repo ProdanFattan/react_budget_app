@@ -13,10 +13,14 @@ const AddExpenseFrom = () => {
       name: name,
       cost: parseInt(cost),
     };
-    dispatch({
-      type: "ADD_EXPENSE",
-      payload: expense,
-    });
+    if (name.trim().length > 0 && cost.trim().length > 0) {
+      dispatch({
+        type: "ADD_EXPENSE",
+        payload: expense,
+      });
+      setName("");
+      setCost("");
+    }
   };
   return (
     <>
@@ -39,7 +43,7 @@ const AddExpenseFrom = () => {
               type="text"
               required="required"
               className="form-control"
-              id="name"
+              id="cost"
               value={cost}
               onChange={(event) => setCost(event.target.value)}
             />
